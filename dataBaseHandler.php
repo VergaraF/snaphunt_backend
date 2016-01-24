@@ -28,15 +28,25 @@
 
 
 		function insertUser($mail, $password){
-			$my_sql_insert_user_query = "INSERT INTO user (email, password) VALUES ('" . $mail . "', '" . $password . "');";
-			echo $my_sql_insert_user_query;
+			$sql_query = "INSERT INTO user (email, password) " .
+										"VALUES ('" . $mail . "', '" . $password . "');";
 
-			if ($this->conn->query($my_sql_insert_user_query) === TRUE) {
-		   		 echo "New record created successfully";
+			if ($this->conn->query($sql_query) === TRUE) {
+		   		 echo "New user created successfully";
 			} else {
-		   		 echo "Error: " . $my_sql_insert_user_query . "<br>" . $conn->error;
+		   		 echo "Error: " . $sql_query . "<br>" . $this->conn->error;
 			}
 
+		}
+
+		function insertTresure($user_id, $found_by_user_id, $picture_url, $tags, $lati, $longi, $locality){
+			$sql_query = "INSERT INTO treasure (user_id, found_by_user_id, picture_url, tags, lat, longi, locality) " .
+			             "VALUES ('" . $user_id . "', '" . $found_by_user_id ."', '" . $picture_url ."', '" . $tags ."', '" . $lati ."', '" . $longi ."', '" . $locality . "');";
+			if ($this->conn->query($sql_query) === TRUE) {
+		   		 echo "New treasure created successfully";
+			} else {
+		   		 echo "Error: " . $sql_query . "<br>" . $this->conn->error;
+			}
 		}
 
 	
